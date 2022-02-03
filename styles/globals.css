@@ -1,13 +1,23 @@
+@import url('/fonts/stylesheet.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'sf-pro';
+  src: url('/assets/fonts/SFPRODISPLAYREGULAR.otf');
+}
+@font-face{
+  font-family: 'sf-pro-rounded';
+  src: url('/assets/fonts/SF-Pro-Rounded-Medium.otf');
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'sf-pro';
 }
 
 a {

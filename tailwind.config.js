@@ -4,7 +4,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: "#292929",
+        darkBlack: "#131313"
+      },
+      fontFamily: {
+        sfRound: ["sf-pro-rounded"]
+      },
+      dropShadow: {
+        '3xl': '0 3.5px 1.5px rgba(0, 0, 0, 0.25)',
+      }
+    },
   },
   plugins: [],
 }

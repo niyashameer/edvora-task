@@ -14,9 +14,10 @@ path.resolve(process.cwd(), 'fonts', 'SFPRODISPLAYREGULAR.OTF');
 function Products() {
 	const [filter, setFilter] = useState<boolean>(false);
 	const [dataset, setData] = useState<Product[][]>();
-	const [name, setName] = useState();
+	const [product, setProduct] = useState();
 	let dataNames : any = []
 	let dataProduct: any = [];
+	let temp: any;
 	const Router = useRouter();
 
 	useEffect(() => {
@@ -25,7 +26,7 @@ function Products() {
 				const res = await fetchProduct();
 				if (Router.query.name === 'product-name') {
 						const response = await filterProduct(Router.query.value, res);
-						dataProduct?.push(response);
+					dataProduct?.push(response);
 				}
 				else if (Router.query.name === 'state') {
 					const responseName = await filterProductName(res);
@@ -48,10 +49,11 @@ function Products() {
 						dataProduct?.push(response);
 					});
 				}
+				temp = res;
 			}
 			fetchFunction().then((e) => {
 				setData(dataProduct);
-				setName(dataNames);
+				setProduct(temp);
 			});
 		} catch (err) {
 			console.error(err);
@@ -62,7 +64,7 @@ function Products() {
 	};
 
 	return (
-		<div className='h-screen overflow-y-auto w-screen xl:grid grid-cols-5 px-4 py-10 font-sfPro'>
+		<div className='h-screen overflow-y-auto w-screen xl:grid grid-cols-5 px-4 py-10'>
 			<button
 				className='xl:hidden block absolute right-10 top-8 z-[100] p-1'
 				onClick={onClickHandler}>
@@ -78,9 +80,9 @@ function Products() {
 						<hr />
 					</div>
 					<div className='h-36 my-8 flex flex-col justify-between'>
-						<Dropdown text={'Products'} data={'product_name'}/>
-						<Dropdown text={'State'} data={'state'}/>
-						<Dropdown text={'City'} data={'city'}/>
+						<Dropdown text={'Products'} data={'product_name'} product={product}/>
+						<Dropdown text={'State'} data={'state'} product={product}/>
+						<Dropdown text={'City'} data={'city'} product={product}/>
 					</div>
 				</div>
 			</div>

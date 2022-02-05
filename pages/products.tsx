@@ -1,8 +1,9 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Dropdown from "../components/Dropdown";
 import Container from "../components/products/Container";
 import { fetchProduct, fetchSpecificProduct } from "../shared/api/axios";
-import { filterProduct, filterProductName } from "../shared/helpers/filter";
+import { filterCity, filterProduct, filterProductName, filterState } from "../shared/helpers/filter";
 import { Product } from "../shared/helpers/interface";
 
 function Products() {
@@ -11,17 +12,37 @@ function Products() {
 	const [name, setName] = useState();
 	let dataNames : any = []
 	let dataProduct: any = [];
-
+	const Router = useRouter();
 
 	useEffect(() => {
 		try {
 			async function fetchFunction() {
 				const res = await fetchProduct();
-				const responseName = await filterProductName(res);
-				responseName?.map(async (product: string) => {
-					const response = await filterProduct(product, res);
-					dataProduct?.push(response);
-				});
+				if (Router.query.name === 'product-name') {
+						const response = await filterProduct(Router.query.value, res);
+						dataProduct?.push(response);
+				}
+				else if (Router.query.name === 'state') {
+					const responseName = await filterProductName(res);
+					responseName?.map(async (product: string) => {
+						const response = await filterState(res, Router.query.value);
+						dataProduct?.push(response);
+					})
+				}
+				else if (Router.query.name === 'city') {
+					const responseName = await filterProductName(res);
+					responseName?.map(async (product: string) => {
+						const response = await filterCity(res, Router.query.value);
+						dataProduct?.push(response);
+					})
+				}
+				else {
+					const responseName = await filterProductName(res);
+					responseName?.map(async (product: string) => {
+						const response = await filterProduct(product, res);
+						dataProduct?.push(response);
+					});
+				}
 			}
 			fetchFunction().then((e) => {
 				setData(dataProduct);
@@ -30,7 +51,7 @@ function Products() {
 		} catch (err) {
 			console.error(err);
 		}
-	}, []);
+	}, [Router.query]);
 	const onClickHandler = () => {
 		setFilter(!filter);
 	};

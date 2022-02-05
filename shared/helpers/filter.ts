@@ -30,7 +30,7 @@ export const filterStateName = async (res: [Product]) => {
 			),
 		];
 		const arr: string[] = [...new Set(new_Arr)];
-		console.log(arr)
+		console.log(arr);
 		return arr;
 	} catch (err) {
 		console.error(err);
@@ -53,31 +53,40 @@ export const filterCityName = async (res: [Product]) => {
 		console.error(err);
 	}
 };
-export const filterProduct = async (product_name: string, res: [Product]) => {
+export const filterProduct = async (
+	product_name: string | string[] | undefined,
+	res: [Product]
+) => {
 	try {
 		const response = res;
-		const arr = response
-      .filter((item: any) => item.product_name === product_name);
+		const arr = response.filter(
+			(item: any) => item.product_name === product_name
+		);
 		return arr;
 	} catch (err) {
 		console.error(err);
 	}
 };
-export const filterState = async (res: [Product], state :string) => {
+export const filterState = async (
+	res: [Product],
+	state: string | string[] | undefined
+) => {
 	try {
 		const response = res;
-		const arr = response
-      .filter((item: any) => item.state === state);
+		const arr = response.filter((item: any) => item.address.state === state);
+		console.log(arr);
 		return arr;
 	} catch (err) {
 		console.error(err);
 	}
 };
-export const filterCity = async (res: [Product], city :string) => {
+export const filterCity = async (
+	res: [Product],
+	city: string | string[] | undefined
+) => {
 	try {
 		const response = res;
-		const arr = response
-      .filter((item: any) => item.city === city);
+		const arr = response.filter((item: any) => item.address.city === city);
 		return arr;
 	} catch (err) {
 		console.error(err);

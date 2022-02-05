@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { fetchProduct } from "../shared/api/axios";
 import {
@@ -14,6 +15,7 @@ const Dropdown = (props: any) => {
 	let dataProduct: any = [];
 	let dataState: any = [];
 	let dataCity: any = [];
+	const Router = useRouter();
 	const onClickHandler = () => {
 		visible === "hidden" ? setVisible("block") : setVisible("hidden");
 	};
@@ -30,7 +32,7 @@ const Dropdown = (props: any) => {
 				const responseState = await filterStateName(res);
 				responseState?.map(async (product: string) => {
 					const response = product;
-					console.log(response)
+					console.log(response);
 					dataState?.push(response);
 				});
 
@@ -42,13 +44,24 @@ const Dropdown = (props: any) => {
 			}
 			fetchFunction().then((e) => {
 				setData(dataProduct);
-				setState(dataState);	
+				setState(dataState);
 				setCity(dataCity);
 			});
 		} catch (err) {
 			console.error(err);
 		}
 	}, []);
+
+	const onSubmitHandler = (e: any) => {
+		Router.push({
+			pathname: '/products',
+			query: {
+				name: e.target.name,
+				value: e.target.value
+			}
+		})
+	}
+
 	return (
 		<div className='relative'>
 			<button
@@ -63,21 +76,27 @@ const Dropdown = (props: any) => {
 				className={`${visible} transition-all duration-150 delay-150 absolute z-[100] w-full bg-background py-2 px-2 my-2 rounded-sm h-28 overflow-y-scroll drop-shadow-light`}>
 				{props.data === "product_name" &&
 					data?.map((ele: any, index) => (
-						<p className='transition-all duration-150 text-[15px] font-[300] hover:bg-white hover:text-darkBlack px-2 my-1 rounded-sm' key={index}>
+						<button
+							className='transition-all duration-150 text-[15px] font-[300] hover:bg-white hover:text-darkBlack px-2 my-1 rounded-sm cursor-pointer w-[100%] text-left'
+							key={index} onClick={onSubmitHandler} value={ele} name="product-name">
 							{ele}
-						</p>
+						</button>
 					))}
 				{props.data === "state" &&
-					state?.map((ele: any,index) => (
-						<p className='transition-all duration-150 text-[15px] font-[300] hover:bg-white hover:text-darkBlack px-2 my-1 rounded-sm' key={index}>
+					state?.map((ele: any, index) => (
+						<button
+							className='transition-all duration-150 text-[15px] font-[300] hover:bg-white hover:text-darkBlack px-2 my-1 rounded-sm cursor-pointer w-[100%] text-left'
+							key={index} onClick={onSubmitHandler} value={ele} name="state">
 							{ele}
-						</p>
+						</button>
 					))}
 				{props.data === "city" &&
 					city?.map((ele: any, index) => (
-						<p className='transition-all duration-150 text-[15px] font-[300] hover:bg-white hover:text-darkBlack px-2 my-1 rounded-sm' key={index}>
+						<button
+							className='transition-all duration-150 text-[15px] font-[300] hover:bg-white hover:text-darkBlack px-2 my-1 rounded-sm cursor-pointer w-[100%] text-left'
+							key={index} onClick={onSubmitHandler} value={ele} name="city">
 							{ele}
-						</p>
+						</button>
 					))}
 			</div>
 		</div>

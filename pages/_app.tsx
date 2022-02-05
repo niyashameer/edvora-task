@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<div className='bg-background text-white tracking-wider h-screen w-full font-sfPro'>
 				<style jsx>{`
 				 @font-face {
-					font-family: sfpro;
+					font-family: sf-pro !important;
 					src: '/assets/fonts/SFPRODISPLAYREGULAR.otf';
 				  }
 				  body{

@@ -25,7 +25,7 @@ export const filterStateName = async (res: [Product]) => {
 			...new Set(
 				res.map((item: any) => {
 					item.state;
-					new_Arr.push(item.state);
+					new_Arr.push(item.address.state);
 				})
 			),
 		];
@@ -43,7 +43,7 @@ export const filterCityName = async (res: [Product]) => {
 			...new Set(
 				res.map((item: any) => {
 					item.city;
-					new_Arr.push(item.city);
+					new_Arr.push(item.address.city);
 				})
 			),
 		];

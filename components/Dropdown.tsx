@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { fetchProduct } from "../shared/api/axios";
 import {
-	filterCity,
 	filterCityName,
-	filterProduct,
 	filterProductName,
-	filterState,
 	filterStateName,
 } from "../shared/helpers/filter";
 
@@ -45,13 +42,13 @@ const Dropdown = (props: any) => {
 			}
 			fetchFunction().then((e) => {
 				setData(dataProduct);
-				// setState(dataState);
-				// setCity(dataCity);
+				setState(dataState);	
+				setCity(dataCity);
 			});
 		} catch (err) {
 			console.error(err);
 		}
-	});
+	}, []);
 	return (
 		<div className='relative'>
 			<button

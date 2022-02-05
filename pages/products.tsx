@@ -5,6 +5,11 @@ import Container from "../components/products/Container";
 import { fetchProduct, fetchSpecificProduct } from "../shared/api/axios";
 import { filterCity, filterProduct, filterProductName, filterState } from "../shared/helpers/filter";
 import { Product } from "../shared/helpers/interface";
+import path from 'path';
+
+path.resolve(process.cwd(), 'fonts', 'fonts.conf');
+path.resolve(process.cwd(), 'fonts', 'SFPRODISPLAYREGULAR.OTF');
+
 
 function Products() {
 	const [filter, setFilter] = useState<boolean>(false);
@@ -58,6 +63,12 @@ function Products() {
 
 	return (
 		<div className='h-screen overflow-y-auto w-screen xl:grid grid-cols-5 px-4 py-10'>
+			<style jsx>{`
+				 @font-face {
+					font-family: Arial Bold;
+					src: './fonts/Arial Bold.ttf';
+				  }
+			`}</style>
 			<button
 				className='xl:hidden block absolute right-10 top-8 z-[100] p-1'
 				onClick={onClickHandler}>

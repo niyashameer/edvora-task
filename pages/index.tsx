@@ -1,13 +1,14 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next";
+import Link from "next/link";
 
 const Home: NextPage = () => {
-  return (
-    <div className="">
-      <a href="/products">
-        Kindly  click here to move to the route
-      </a>
-    </div>
-  )
-}
+	return (
+		<div className=''>
+			<Link href='/products'>
+				<a>Kindly click here to move to the route</a>
+			</Link>
+		</div>
+	);
+};
 
-export default Home
+export default Home;

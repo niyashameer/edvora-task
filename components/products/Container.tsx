@@ -1,8 +1,7 @@
-import React, { useImperativeHandle } from "react";
-import ScrollList from "./ScrollList";
+import React from "react";
 import { useRef } from "react";
+import ScrollList from "./ScrollList";
 import NextButton from "../NextButton";
-import { Product } from "../../shared/helpers/interface";
 
 const Container= (props:any)  => {
 	const scrollList = useRef(null);

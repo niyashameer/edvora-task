@@ -1,7 +1,7 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import path from "path";
-import Head from "next/head";
+import "../styles/globals.css";
+
 let basePath = process.cwd();
 if (process.env.NODE_ENV === "production")
 	basePath = path.join(process.cwd(), ".next/server/chunks");

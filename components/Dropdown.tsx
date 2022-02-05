@@ -32,7 +32,6 @@ const Dropdown = (props: any) => {
 				const responseState = await filterStateName(res);
 				responseState?.map(async (product: string) => {
 					const response = product;
-					console.log(response);
 					dataState?.push(response);
 				});
 

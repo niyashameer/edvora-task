@@ -1,11 +1,12 @@
+import path from 'path';
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Dropdown from "../components/Dropdown";
 import Container from "../components/products/Container";
-import { fetchProduct, fetchSpecificProduct } from "../shared/api/axios";
+import { fetchProduct } from "../shared/api/axios";
 import { filterCity, filterProduct, filterProductName, filterState } from "../shared/helpers/filter";
 import { Product } from "../shared/helpers/interface";
-import path from 'path';
+import Loader from '../components/Loader';
 
 path.resolve(process.cwd(), 'fonts', 'fonts.conf');
 path.resolve(process.cwd(), 'fonts', 'SFPRODISPLAYREGULAR.OTF');
@@ -14,51 +15,51 @@ path.resolve(process.cwd(), 'fonts', 'SFPRODISPLAYREGULAR.OTF');
 function Products() {
 	const [filter, setFilter] = useState<boolean>(false);
 	const [dataset, setData] = useState<Product[][]>();
-	const [product, setProduct] = useState();
-	let dataNames : any = []
-	let dataProduct: any = [];
-	let temp: any;
+	const [loader, setLoader] = useState<boolean>(false);
+	let dataProduct: Product[][] = [];
+
 	const Router = useRouter();
 
 	useEffect(() => {
 		try {
 			async function fetchFunction() {
+				setLoader(true);
 				const res = await fetchProduct();
 				if (Router.query.name === 'product-name') {
 						const response = await filterProduct(Router.query.value, res);
-					dataProduct?.push(response);
+					dataProduct?.push(response!);
 				}
 				else if (Router.query.name === 'state') {
 					const responseName = await filterProductName(res);
 					responseName?.map(async (product: string) => {
 						const response = await filterState(res, Router.query.value);
-						dataProduct?.push(response);
+						dataProduct?.push(response!);
 					})
 				}
 				else if (Router.query.name === 'city') {
 					const responseName = await filterProductName(res);
 					responseName?.map(async (product: string) => {
 						const response = await filterCity(res, Router.query.value);
-						dataProduct?.push(response);
+						dataProduct?.push(response!);
 					})
 				}
 				else {
 					const responseName = await filterProductName(res);
 					responseName?.map(async (product: string) => {
 						const response = await filterProduct(product, res);
-						dataProduct?.push(response);
+						dataProduct?.push(response!);
 					});
 				}
-				temp = res;
+				setLoader(false);
 			}
 			fetchFunction().then((e) => {
 				setData(dataProduct);
-				setProduct(temp);
 			});
 		} catch (err) {
 			console.error(err);
 		}
 	}, [Router.query]);
+
 	const onClickHandler = () => {
 		setFilter(!filter);
 	};
@@ -80,9 +81,9 @@ function Products() {
 						<hr />
 					</div>
 					<div className='h-36 my-8 flex flex-col justify-between'>
-						<Dropdown text={'Products'} data={'product_name'} product={product}/>
-						<Dropdown text={'State'} data={'state'} product={product}/>
-						<Dropdown text={'City'} data={'city'} product={product}/>
+						<Dropdown text={'Products'} data={'product_name'}/>
+						<Dropdown text={'State'} data={'state'}/>
+						<Dropdown text={'City'} data={'city'}/>
 					</div>
 				</div>
 			</div>
@@ -92,11 +93,11 @@ function Products() {
 				<h2 className='text-[25px] font-[500] drop-shadow-3xl opacity-50 pl-4'>
 					Products
 				</h2>
-				<div className='h-[80%] w-full flex flex-col justify-between pt-4'>
+				{loader ?<div className='w-ful flex justify-center items-center'><Loader /> </div>: (<div className='h-[80%] w-full flex flex-col justify-between pt-4'>
 					{dataset?.map((ele, index) => {
 						return <Container ele={ele} name={ele[0]?.product_name} key={index}/>;
 					})}
-				</div>
+				</div>) }
 			</div>
 		</div>
 	);

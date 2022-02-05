@@ -1,4 +1,3 @@
-import { fetchProduct, fetchSpecificProduct } from "../api/axios";
 import { Product } from "./interface";
 
 export const filterProductName = async (res: [Product]) => {
@@ -30,7 +29,6 @@ export const filterStateName = async (res: [Product]) => {
 			),
 		];
 		const arr: string[] = [...new Set(new_Arr)];
-		console.log(arr);
 		return arr;
 	} catch (err) {
 		console.error(err);
@@ -74,7 +72,6 @@ export const filterState = async (
 	try {
 		const response = res;
 		const arr = response.filter((item: any) => item.address.state === state);
-		console.log(arr);
 		return arr;
 	} catch (err) {
 		console.error(err);

@@ -11,7 +11,7 @@ module.exports = {
       },
       fontFamily: {
         sfRound: ["sf-pro-rounded"],
-        sfpro: ["sf-pro"]
+        sfPro: ["sf-pro"]
       },
       dropShadow: {
         '3xl': '0 3.5px 1.5px rgba(0, 0, 0, 0.25)',

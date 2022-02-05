@@ -7,7 +7,7 @@ path.resolve(process.cwd(), 'fonts', 'SFPRODISPLAYREGULAR.OTF');
 
 const Home: NextPage = () => {
 	return (
-		<div className=''>
+		<div className='font-sfPro'>
 			<Link href='/products'>
 				<a>Kindly click here to move to the route</a>
 			</Link>

@@ -62,7 +62,7 @@ function Products() {
 	};
 
 	return (
-		<div className='h-screen overflow-y-auto w-screen xl:grid grid-cols-5 px-4 py-10'>
+		<div className='h-screen overflow-y-auto w-screen xl:grid grid-cols-5 px-4 py-10 font-sfPro'>
 			<button
 				className='xl:hidden block absolute right-10 top-8 z-[100] p-1'
 				onClick={onClickHandler}>

@@ -1,7 +1,0 @@
-{
-    "functions": {
-      "api/with-font-file.js": {
-        "includeFiles": "fonts/**"
-      }
-    }
-  }

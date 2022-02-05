@@ -7,13 +7,13 @@ class MyDocument extends Document {
 				<Head>
 					<link
 						rel='preload'
-						href='/assets/fonts/SFPRODISPLAYREGULAR.otf'
+						href='/fonts/SFPRODISPLAYREGULAR.otf'
 						as='font'
 						crossOrigin=''
 					/>
 					<link
 						rel='preload'
-						href='/assets/fonts/SF-Pro-Rounded-Medium.otf'
+						href='/fonts/SF-Pro-Rounded-Medium.otf'
 						as='font'
 						crossOrigin=''
 					/>

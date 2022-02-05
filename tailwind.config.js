@@ -10,7 +10,8 @@ module.exports = {
         darkBlack: "#131313"
       },
       fontFamily: {
-        sfRound: ["sf-pro-rounded"]
+        sfRound: ["sf-pro-rounded"],
+        sfpro: ["sf-pro"]
       },
       dropShadow: {
         '3xl': '0 3.5px 1.5px rgba(0, 0, 0, 0.25)',

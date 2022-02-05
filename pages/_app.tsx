@@ -10,13 +10,7 @@ path.resolve(process.cwd(), "fonts", "SFPRODISPLAYREGULAR.OTF");
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<div className='bg-background text-white tracking-wider h-screen w-full'>
-			<style jsx>{`
-				 @font-face {
-					font-family: Arial Bold;
-					src: './fonts/Arial Bold.ttf';
-				  }
-			`}</style>
+		<div className='bg-background text-white tracking-wider h-screen w-full font-sfpro'>
 			<Component {...pageProps} />
 		</div>
 	);

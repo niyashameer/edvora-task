@@ -1,6 +1,7 @@
 import React, { useImperativeHandle } from 'react';
 
-const NextButton = React.forwardRef((props, ref) => {
+const WrappedComponent = React.forwardRef(
+	function NextButton(props: any, ref){
     const onClickHandler = () => {
         document.getElementById('horizontal-list')!.scrollLeft += 250;
         console.log('hi')
@@ -15,4 +16,4 @@ const NextButton = React.forwardRef((props, ref) => {
 </div>);
 });
 
-export default NextButton;
+export default WrappedComponent

@@ -1,0 +1,7 @@
+{
+    "functions": {
+       "pages/_app.tsx": {
+          "includeFiles": "fonts/**"
+       }
+    }
+ }

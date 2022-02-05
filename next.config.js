@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
+const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   target: 'serverless',
   webpack5: true,
-
   webpack: function (config, { dev, isServer }) {
     // Fixes npm packages that depend on `fs` module
     if (!isServer) config.resolve.fallback.fs = false

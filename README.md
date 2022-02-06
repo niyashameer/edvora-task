@@ -14,8 +14,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Tech Stack
 
-Next 
+Next
+
 Tailwind css
+
 Typescript
 
 ## Deployment 
